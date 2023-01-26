@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Label layoutX="62.0" layoutY="36.0" text="Destructor" />
+      <ProgressBar fx:id="pbVidaDestructor" layoutX="39.0" layoutY="68.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+      <Label fx:id="vidaDestructor" layoutX="133.0" layoutY="36.0" text="0" />
+      <Label fx:id="acorazado" layoutX="62.0" layoutY="106.0" text="Acorazado" />
+      <Label fx:id="vidaAcorazado" layoutX="133.0" layoutY="106.0" text="0" />
+      <ProgressBar fx:id="pbVidaAcorazado" layoutX="39.0" layoutY="133.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+      <Label fx:id="submarino" layoutX="62.0" layoutY="171.0" text="Submarino" />
+      <Label fx:id="acorazado11" layoutX="62.0" layoutY="242.0" text="Lancha" />
+      <Label fx:id="vidaSubmarino" layoutX="133.0" layoutY="171.0" text="0" />
+      <Label fx:id="vidaLancha" layoutX="133.0" layoutY="242.0" text="0" />
+      <ProgressBar fx:id="pbVidaLancha" layoutX="39.0" layoutY="282.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+      <ProgressBar fx:id="pbVidaSubmarino" layoutX="39.0" layoutY="200.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+   </children>
+</AnchorPane>

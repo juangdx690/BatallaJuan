@@ -1,0 +1,57 @@
+.button{
+
+    -fx-cursor:hand;
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #ff0000 0%, #ffffff 30%, #0000ff 100%);
+
+
+}
+
+
+
+
+.dialog {
+
+   -fx-background-color: linear-gradient(to bottom, #ff0000 0%, #ffffff 30%, #0000ff 100%);
+
+
+
+}
+
+.dialog:header *.header-panel{
+
+    -fx-background-color: linear-gradient(to bottom, #ff0000 0%, #ffffff 30%, #0000ff 100%);
+
+
+
+}
+
+
+.dialog > *.content.label {
+
+    -fx-font-size:20px;
+    -fx-font-weight:bold;
+}
+
+
+.dialog:header *.header-panel *.label{
+
+    -fx-font-size:20px;
+}
+
+.dialog > *.button-bar *.button {
+
+    -fx-pref-width:120px;
+
+}
+
+
+.banderaEspana .header-panel .graphic {
+    -fx-background-image: url("../images/banderaEspana.png");
+    -fx-background-size: 32px 32px;
+}
+
+.banderaFrancia .header-panel .graphic {
+    -fx-background-image: url("../images/banderaFrancia.png");
+    -fx-background-size: 32px 32px;
+}
