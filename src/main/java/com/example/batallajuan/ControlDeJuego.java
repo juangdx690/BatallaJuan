@@ -7,11 +7,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-
 
 
 public class ControlDeJuego {
@@ -19,7 +20,7 @@ public class ControlDeJuego {
     String winner = "";
     DialogPane dialog;
 
-
+    MediaPlayer mediaPlayer;
 
     public synchronized ArrayList<Barco> getBarcos() {
         return barcos;
@@ -114,6 +115,9 @@ public class ControlDeJuego {
                 imageView.setFitHeight(70);
                 imageView.setFitWidth(80);
                 dialog.setGraphic(imageView);
+                Media pick = new Media(this.getClass().getResource("musica/espanaWin.mp3").toString());
+                mediaPlayer= new MediaPlayer(pick);
+                mediaPlayer.play();
 
             } else {
                 dialog.getStylesheets().add(this.getClass().getResource("css/DialogoWinnerFrancia.css").toString());
@@ -122,6 +126,9 @@ public class ControlDeJuego {
                 imageView.setFitHeight(70);
                 imageView.setFitWidth(80);
                 dialog.setGraphic(imageView);
+                Media pick = new Media(this.getClass().getResource("musica/franciaWin.mp3").toString());
+                mediaPlayer= new MediaPlayer(pick);
+                mediaPlayer.play();
             }
 
             dialog.getStyleClass().add("dialog");
