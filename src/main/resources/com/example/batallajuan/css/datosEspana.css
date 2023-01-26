@@ -1,0 +1,26 @@
+.color{
+
+    -fx-background-color: linear-gradient(to bottom, #ff0000 0%, #ffff00 30%, #ff0000 100%);
+
+}
+
+.text-color {
+-fx-text-fill: #8b0000;
+-fx-font-weight: bold;
+}
+
+
+.green-progress-bar {
+-fx-accent: green;
+
+}
+
+.red-progress-bar {
+-fx-accent: red;
+
+}
+
+.orange-progress-bar {
+-fx-accent: orange;
+
+}

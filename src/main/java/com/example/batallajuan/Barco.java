@@ -1,14 +1,28 @@
 package com.example.batallajuan;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Barco {
+    private MediaPlayer mediaPlayer;
     private String nombre;
     private int vida;
     private int velocidad;
@@ -34,12 +48,13 @@ public class Barco {
     private boolean modoDisparo;
 
     private long tiempoRecarga;
+    private AnchorPane fondo;
 
-    public Barco(String nombre, String equipo, ImageView imagenBarco, ArrayList<Barco> barcos, ImageView bola) {
+    public Barco(String nombre, String equipo, ImageView imagenBarco, ArrayList<Barco> barcos, ImageView bola, AnchorPane ventana) {
         this.nombre = nombre;
         this.imagenBarco = imagenBarco;
         this.barcos = barcos;
-
+        this.fondo = ventana;
         this.modoDisparo = false;
         this.direccion = 45;
 
@@ -54,7 +69,7 @@ public class Barco {
             imagenBarco.setFitWidth(30);
             vida = 10;
             velocidad = 10;
-            sonar = 2000;
+            sonar = 75;
             potenciaFuego = 20;
             tiempoRecarga = 2000;
         } else if (nombre.contains("acorazado")) {
@@ -62,7 +77,7 @@ public class Barco {
             imagenBarco.setFitWidth(90);
             vida = 120;
             velocidad = 3;
-            sonar = 2000;
+            sonar = 204;
             potenciaFuego = 80;
             tiempoRecarga = 8000;
 
@@ -71,7 +86,7 @@ public class Barco {
             imagenBarco.setFitWidth(40);
             vida = 30;
             velocidad = 2;
-            sonar = 2000;
+            sonar = 102;
             potenciaFuego = 60;
             tiempoRecarga = 4000;
         } else if (nombre.contains("destructor")) {
@@ -80,23 +95,50 @@ public class Barco {
             imagenBarco.setFitWidth(70);
             vida = 80;
             velocidad = 5;
-            sonar = 2000;
+            sonar = 153;
             potenciaFuego = 50;
             tiempoRecarga = 6000;
         }
 
         moverse = new Timeline(new KeyFrame(Duration.seconds(0.05), e -> {
 
-            barcoMuerto();
-            acabarJuego();
-            detectarBarcosCercanos();
-            detectarParedes();
-            moverBarco();
 
+            acabarJuego();
+            if (!modoDisparo) {
+                detectarBarcosCercanos();
+                detectarParedes();
+                moverBarco();
+            }
+            barcoMuerto();
 
         }));
         moverse.setCycleCount(Timeline.INDEFINITE);
         moverse.play();
+
+    }
+
+    public synchronized boolean isModoDisparo() {
+        return modoDisparo;
+    }
+
+    public synchronized void setModoDisparo(boolean modoDisparo) {
+        this.modoDisparo = modoDisparo;
+    }
+
+    public synchronized void pararBarcos(Barco barco1, Barco barco2) {
+
+        barco1.setModoDisparo(true);
+        barco2.setModoDisparo(true);
+
+    }
+
+    public synchronized void moverBarcos() {
+
+        for (Barco barco : barcos) {
+
+            barco.setModoDisparo(false);
+
+        }
 
     }
 
@@ -153,7 +195,7 @@ public class Barco {
 
     private long tiempoUltimoDisparo = 0;
 
-    private boolean recargando() {
+    public synchronized boolean recargando() {
         long tiempoActual = System.currentTimeMillis();
         return tiempoActual < tiempoUltimoDisparo + tiempoRecarga;
     }
@@ -165,6 +207,68 @@ public class Barco {
 
     public synchronized void setMoverse(Timeline moverse) {
         this.moverse = moverse;
+    }
+
+    public void sonidoDisparo() {
+
+        Platform.runLater(() -> {
+
+
+            Media pick = new Media(this.getClass().getResource("musica/aa.mp3").toString());
+            mediaPlayer= new MediaPlayer(pick);
+            mediaPlayer.play();
+
+        });
+
+
+    }
+
+
+    public void animacionDisparo(Barco barco1, Barco barco2) {
+
+        ImageView bola = new ImageView((new Image((getClass().getResourceAsStream("images/disparo.png")))));
+        bola.setFitWidth(15);
+        bola.setFitHeight(15);
+        fondo.getChildren().add(bola);
+
+
+        double barco1X = barco1.getImagenBarco().getBoundsInParent().getMinX() + barco1.getImagenBarco().getBoundsInParent().getWidth() / 2;
+        double barco1Y = barco1.getImagenBarco().getBoundsInParent().getMinY() + barco1.getImagenBarco().getBoundsInParent().getHeight() / 2;
+
+        if (barco1.getNombre().equals("lancha") || barco1.getNombre().equals("destructor")) {
+
+
+            barco1X -= 6;
+            barco1Y -= 6;
+        }
+
+        double barco2X = barco2.getImagenBarco().getBoundsInParent().getMinX() + barco2.getImagenBarco().getBoundsInParent().getWidth() / 2;
+        double barco2Y = barco2.getImagenBarco().getBoundsInParent().getMinY() + barco2.getImagenBarco().getBoundsInParent().getHeight() / 2;
+
+
+        if (barco2.getNombre().equals("lancha") || barco2.getNombre().equals("destructor")) {
+
+
+            barco2X -= 6;
+            barco2Y -= 6;
+        }
+
+        Timeline animacion = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(bola.xProperty(), barco1X),
+                        new KeyValue(bola.yProperty(), barco1Y)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(bola.xProperty(), barco2X),
+                        new KeyValue(bola.yProperty(), barco2Y))
+        );
+        animacion.setOnFinished(e -> {
+            int ultimoIndex = fondo.getChildren().size() - 1;
+            fondo.getChildren().remove(ultimoIndex);
+            barco1.setModoDisparo(false);
+            barco2.setModoDisparo(false);
+            cambiarImagenBarco(barco2);
+        });
+        animacion.play();
+
+
     }
 
     public synchronized void detectarBarcosCercanos() {
@@ -181,28 +285,63 @@ public class Barco {
                     Math.pow(barco.getImagenBarco().getLayoutY() - this.getImagenBarco().getLayoutY(), 2));
 
             if (barco.getNombre().contains("submarino")) {
-                distancia -= 10;
+                distancia -= 50;
             }
 
             if (distancia < getSonar() && this.getEquipo() != barco.getEquipo() && barco.getVida() > 0) {
+                pararBarcos(this, barco);
                 tiempoUltimoDisparo = System.currentTimeMillis();
                 int disparar = this.disparar();
                 System.out.println("El barco: " + this.getNombre() + " " + this.getEquipo() + " dispara a: " + barco.getNombre() + " " + barco.getEquipo());
                 System.out.println("Le quita: " + disparar);
                 barco.setVida(barco.getVida() - disparar);
                 System.out.println("Le queda de vida: " + barco.getVida());
+                sonidoDisparo();
+                animacionDisparo(this, barco);
                 break;
             }
         }
     }
 
+    public synchronized void cambiarImagenBarco(Barco barco) {
+        if (barco.getVida() <= 0) {
+
+            barco.moverse.stop();
+
+            ImageView muerto = new ImageView(new Image(getClass().getResourceAsStream("images/muerto.png")));
+            barco.imagenBarco.setImage(muerto.getImage());
+            barco.imagenBarco.setRotate(0);
+
+            barco.imagenBarco.setFitHeight(20);
+            barco.imagenBarco.setFitWidth(20);
+
+            Platform.runLater(() -> {
+
+
+                Media pick = new Media(this.getClass().getResource("musica/mMin.mp3").toString());
+                mediaPlayer= new MediaPlayer(pick);
+                mediaPlayer.play();
+
+            });
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    barco.fondo.getChildren().remove(barco.getImagenBarco());
+                }
+            }));
+            timeline.play();
+            barco.vida = 0;
+        }
+
+
+    }
 
     public synchronized void barcoMuerto() {
 
         if (this.getVida() <= 0) {
 
             moverse.stop();
-
             this.vida = 0;
         }
 

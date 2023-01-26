@@ -2,21 +2,64 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="758.0" prefWidth="255.0" styleClass="color" stylesheets="@css/datosFrancia.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="62.0" layoutY="36.0" text="Destructor" />
-      <ProgressBar fx:id="pbVidaDestructor" layoutX="39.0" layoutY="68.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
-      <Label fx:id="vidaDestructor" layoutX="133.0" layoutY="36.0" text="0" />
-      <Label fx:id="acorazado" layoutX="62.0" layoutY="106.0" text="Acorazado" />
-      <Label fx:id="vidaAcorazado" layoutX="133.0" layoutY="106.0" text="0" />
-      <ProgressBar fx:id="pbVidaAcorazado" layoutX="39.0" layoutY="133.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
-      <Label fx:id="submarino" layoutX="62.0" layoutY="171.0" text="Submarino" />
-      <Label fx:id="acorazado11" layoutX="62.0" layoutY="242.0" text="Lancha" />
-      <Label fx:id="vidaSubmarino" layoutX="133.0" layoutY="171.0" text="0" />
-      <Label fx:id="vidaLancha" layoutX="133.0" layoutY="242.0" text="0" />
-      <ProgressBar fx:id="pbVidaLancha" layoutX="39.0" layoutY="282.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
-      <ProgressBar fx:id="pbVidaSubmarino" layoutX="39.0" layoutY="200.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+      <Label layoutX="60.0" layoutY="167.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="Destructor" />
+      <ProgressBar fx:id="pbVidaDestructor" layoutX="55.0" layoutY="210.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" stylesheets="@css/datosEspana.css" />
+      <Label fx:id="vidaDestructor" layoutX="135.0" layoutY="166.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="80" />
+      <Label fx:id="acorazado" layoutX="60.0" layoutY="242.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="Acorazado" />
+      <Label fx:id="vidaAcorazado" layoutX="135.0" layoutY="242.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="120" />
+      <ProgressBar fx:id="pbVidaAcorazado" layoutX="55.0" layoutY="281.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" stylesheets="@css/datosEspana.css" />
+      <Label fx:id="submarino" layoutX="60.0" layoutY="311.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="Submarino" />
+      <Label fx:id="acorazado11" layoutX="60.0" layoutY="379.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="Lancha" />
+      <Label fx:id="vidaSubmarino" layoutX="135.0" layoutY="311.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="30" />
+      <Label fx:id="vidaLancha" layoutX="135.0" layoutY="379.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="10" />
+      <ProgressBar fx:id="pbVidaLancha" layoutX="57.0" layoutY="412.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" stylesheets="@css/datosFrancia.css" />
+      <ProgressBar fx:id="pbVidaSubmarino" layoutX="55.0" layoutY="345.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" stylesheets="@css/datosEspana.css" />
+      <ImageView fitHeight="64.0" fitWidth="108.0" layoutX="89.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/banderaFrancia.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="31.0" layoutY="542.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="BARCOS RESTANTES:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="barcosrestantes" layoutX="115.0" layoutY="580.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="4" textFill="#f4f001">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="106.0" styleClass="text-color" stylesheets="@css/datosFrancia.css" text="TEAM FRANCIA">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="disparoDestructor" fitHeight="18.0" fitWidth="18.0" layoutX="159.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/pistolaRecargada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="disparoAcorazado" fitHeight="18.0" fitWidth="18.0" layoutX="159.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/pistolaRecargada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="disparoSubmarino" fitHeight="18.0" fitWidth="18.0" layoutX="159.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/pistolaRecargada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="disparoLancha" fitHeight="18.0" fitWidth="18.0" layoutX="159.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/pistolaRecargada.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -96,6 +96,7 @@ public class ControlDeJuego {
     }
 
 
+
     public void mostrarEquipoGanador(String nombreEquipo) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -129,6 +130,7 @@ public class ControlDeJuego {
                 Media pick = new Media(this.getClass().getResource("musica/franciaWin.mp3").toString());
                 mediaPlayer= new MediaPlayer(pick);
                 mediaPlayer.play();
+
             }
 
             dialog.getStyleClass().add("dialog");
