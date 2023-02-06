@@ -65,8 +65,8 @@ public class Barco {
         this.recagarDisparo = 0;
 
         if (nombre.contains("lancha")) {
-            imagenBarco.setFitHeight(30);
-            imagenBarco.setFitWidth(30);
+            imagenBarco.setFitHeight(60);
+            imagenBarco.setFitWidth(70);
             vida = 10;
             velocidad = 10;
             sonar = 75;
@@ -82,8 +82,8 @@ public class Barco {
             tiempoRecarga = 8000;
 
         } else if (nombre.contains("submarino")) {
-            imagenBarco.setFitHeight(40);
-            imagenBarco.setFitWidth(40);
+            imagenBarco.setFitHeight(60);
+            imagenBarco.setFitWidth(70);
             vida = 30;
             velocidad = 2;
             sonar = 102;

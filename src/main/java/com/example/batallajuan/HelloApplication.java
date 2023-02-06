@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -21,6 +22,10 @@ public class HelloApplication extends Application {
         stage.setY(0);
 
         stage.setResizable(false);
+        stage.centerOnScreen();
+        stage.initStyle(StageStyle.UNDECORATED);
+
+
 
         stage.setScene(scene);
         stage.show();

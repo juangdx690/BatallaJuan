@@ -168,7 +168,7 @@ public class HelloController{
         control.addBarco(barcoAcoEsp = new Barco("acorazado", "España", acorazadoImg, control.getBarcos(), bola,ventana));
 
         ImageView lanchaImg = new ImageView();
-        lanchaImg.setImage(new Image(getClass().getResourceAsStream("images/barcoEsp.png")));
+        lanchaImg.setImage(new Image(getClass().getResourceAsStream("images/lanchaEsp.png")));
         asignarPos(lanchaImg, numbers.remove(0));
         control.addBarco(barcoLanEsp = new Barco("lancha", "España", lanchaImg, control.getBarcos(), bola,ventana));
 
@@ -196,7 +196,7 @@ public class HelloController{
         control.addBarco(barcoAcoFr = new Barco("acorazado", "Francia", acorazadoImg2, control.getBarcos(), bola,ventana));
 
         ImageView lanchaImg2 = new ImageView();
-        lanchaImg2.setImage(new Image(getClass().getResourceAsStream("images/barcoFr.png")));
+        lanchaImg2.setImage(new Image(getClass().getResourceAsStream("images/lanchaFr.png")));
         asignarPosFr(lanchaImg2, numbers.remove(0));
         control.addBarco(barcoLanFr = new Barco("lancha", "Francia", lanchaImg2, control.getBarcos(), bola,ventana));
 
@@ -219,7 +219,7 @@ public class HelloController{
         azul.getChildren().add(pestAzul.getScene().getRoot());
 
         ventana.getChildren().addAll(barcoDesEsp.getImagenBarco(), barcoDesFr.getImagenBarco(), barcoAcoEsp.getImagenBarco(), barcoAcoFr.getImagenBarco(),
-                barcoLanEsp.getImagenBarco(), barcoLanFr.getImagenBarco(), barcoSubEsp.getImagenBarco(), barcoSubFr.getImagenBarco(), bola);
+                barcoLanEsp.getImagenBarco(), barcoLanFr.getImagenBarco(), barcoSubEsp.getImagenBarco(), barcoSubFr.getImagenBarco());
 
         control.ganador();
 
